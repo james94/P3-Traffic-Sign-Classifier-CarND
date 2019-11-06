@@ -64,3 +64,12 @@ The performance on the new images is compared to the accuracy results of the tes
 
 Top five softmax probabilities of the predictions on captured images are outputted
 
+## Suggestitons to Make Your Project Stand Out!
+
+### Augment the Training Data
+
+### Analyze New Image Performance in More Detail
+
+### Create Visualizations of the Softmax Probabilities
+
+### Visualize Layers of the Neural Network
