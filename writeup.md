@@ -104,7 +104,7 @@ Data shuffling was performed using **sklearn** on the entire training set, so th
 
 I implemented a 5 layer CNN model based on [Yann LeCun's LeNet model architecture presented in his 1998 research paper](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf) using Tensorflow. The architecture consists of 2 convolution layers followed 3 fully connected layers. The convolution layers handle extracting features from the traffic sign images, which are useful for learning how to recognize them. Each convolution layer is followed by relu activation and max pooling for filtering images down to the pixels that matter. After the last convolution layer, flatten operation is applied to transform the output shape into a vector. The first two fully connected layers are followed by relu activation and dropout for preventing the model from overfitting the data. The fully connected layers shrink the output vector to 43 different classes, so the model can predict the traffic sign type in the image. The code implementation for our modified LeNet architecture can be found under the **LeNet()** function in the Jupyter notebook. For visual reference of the LeNet model architecture, view the following diagram. Our version of LeNet will have some minor differences and will be explained after the diagram:
 
-![lenet_mod](assets/images/lenet_mod.jpg)
+![lenet_mod](assets/data/images/lenet_mod.jpg)
 
 **Figure 6: Original LeNet-5 Architecture**
 
