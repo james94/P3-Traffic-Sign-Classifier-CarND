@@ -1,31 +1,41 @@
 ## Project: Build a Traffic Sign Recognition Program
+
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
+Top 5 Softmax Probabilities of new images:
+
+![top5_softmax_probabilities.jpg](assets/data/images/output/top5_softmax_probabilities.jpg)
 
 Overview
 ---
-In this project, you will use what you've learned about deep neural networks and convolutional neural networks to classify traffic signs. You will train and validate a model so it can classify traffic sign images using the [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset). After the model is trained, you will then try out your model on images of German traffic signs that you find on the web.
 
-We have included an Ipython notebook that contains further instructions 
-and starter code. Be sure to download the [Ipython notebook](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb). 
+The purpose of this project was to build a traffic sign recognition application using knowledge acquired from deep neural networks (DNN) and convolutional neural networks (CNN). A CNN model was built, trained and validated, so it can classify traffic sign images using Tenorflow and the [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset). Finally, the model was tested on German Traffic signs from the internet.
 
-We also want you to create a detailed writeup of the project. Check out the [writeup template](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup. The writeup can be either a markdown file or a pdf document.
-
-To meet specifications, the project will require submitting three files: 
-* the Ipython notebook with the code
-* the code exported as an html file
-* a writeup report either as a markdown or pdf file 
-
-Creating a Great Writeup
+Contents
 ---
-A great writeup should include the [rubric points](https://review.udacity.com/#!/rubrics/481/view) as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
 
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
+- [Traffic_Sign_Classifier_with_LeNet.ipynb](Traffic_Sign_Classifier_with_LeNet.ipynb): application code
+- [writeup.md](writeup.md): explains my traffic sign recognition application, shortcomings, potential improvements and each rubric point with a description of how that point was addressed.
+- **README.md**: provides overview of the project and how to set it up
+- **assets/**: folder contains image data results captured after running the application, lenet modified architecture, previous notebook checkpoints, writeup help resources and csv for mapping sign name ID to sign name text.
+- lenet_model.model.data-00000-of-00001, lenet_model.index, lenet_model.meta: the saved CNN model
 
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
+Results after Running Application Code:
+---
+
+Jupyter Notebook Result
+
+To see the output result after the code was executed, visit the jupyter notebook: [Traffic_Sign_Classifier_with_LeNet.ipynb](Traffic_Sign_Classifier_with_LeNet.ipynb)
+
+HTML Version of Jupyter Notebook Result:
+
+To see the output result after the Jupyter notebook was dowloaded as an HTML file, visit the HTML file:
+[Traffic_Sign_Classifier_with_LeNet.html](Traffic_Sign_Classifier_with_LeNet.html)
 
 The Project
 ---
-The goals / steps of this project are the following:
+
+The goals / steps of this project were the following:
 * Load the data set
 * Explore, summarize and visualize the data set
 * Design, train and test a model architecture
@@ -34,6 +44,7 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 ### Dependencies
+
 This lab requires:
 
 * [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
@@ -42,17 +53,16 @@ The lab environment can be created with CarND Term1 Starter Kit. Click [here](ht
 
 ### Dataset and Repository
 
-1. Download the data set. The classroom has a link to the data set in the "Project Instructions" content. This is a pickled dataset in which we've already resized the images to 32x32. It contains a training, validation and test set.
-2. Clone the project, which contains the Ipython notebook and the writeup template.
+1. Download the data set at Kaggle link [Traffic Signs Pickled Dataset](https://www.kaggle.com/tomerel/traffic-signs-pickled-dataset). This is a pickled dataset in which we've already resized the images to 32x32. It contains a training, validation and test set.
+2. Clone the project, which contains the Jupypter notebook and the writeup template.
+
 ```sh
-git clone https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project
-cd CarND-Traffic-Sign-Classifier-Project
-jupyter notebook Traffic_Sign_Classifier.ipynb
+git clone https://github.com/james94/P3-Traffic-Sign-Classifier-CarND
+
+# OpenCV, Tensorflow 1.4 may need to be installed
+
+cd P3-Traffic-Sign-Classifier-CarND
+jupyter notebook Traffic_Sign_Classifier_with_LeNet.ipynb
 ```
 
-### Requirements for Submission
-Follow the instructions in the `Traffic_Sign_Classifier.ipynb` notebook and write the project report using the writeup template as a guide, `writeup_template.md`. Submit the project code and writeup document.
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 

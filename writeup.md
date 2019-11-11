@@ -17,7 +17,7 @@ This project involved working on a self-driving car perception problem known as 
 - Visualizing the model's top 5 softmax probabilities to show the certainty of the model's predictions
 - Visualizing the inner layers of the model's network to understand what features the model focuses on. 
 
-For code reference, visit either the jupyter notebook or the HTML version of the jupyter notebook:
+For code reference, visit either the Jupyter notebook or the HTML version of the Jupyter notebook:
 
 - Jupyter Notebook with code is available at the Github link: [Traffic_Sign_Classifier_with_LeNet.ipynb](Traffic_Sign_Classifier_with_LeNet.ipynb)
 
