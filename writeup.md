@@ -8,16 +8,16 @@ One of the first lessons human drivers learn before driving cars on the street i
 
 This project involved working on a self-driving car perception problem known as traffic signalization detection. Specifically, I focused on traffic sign recognition and developed a deep learning application to classify different German Traffic Signs using Tensorflow. The highlights of this solution include:
 
-- Exploratory data analysis (EDA),
-- Data preprocessing, data augmentation, 
-- LeNet convolutional neural network (CNN) architecture interpretation from a research paper, 
-- CNN architecture implementation using TensorFlow 1.4, 
-- Building the training pipeline to train the CNN model, 
-- Developing the evaluation pipeline to evaluate the model's prediction accuracy, 
+- Exploratory data analysis (EDA)
+- Data preprocessing, data augmentation
+- LeNet convolutional neural network (CNN) architecture interpretation from a research paper
+- CNN architecture implementation using TensorFlow 1.4
+- Building the training pipeline to train the CNN model
+- Developing the evaluation pipeline to evaluate the model's prediction accuracy
 - Visualizing the model's top 5 softmax probabilities to show the certainty of the model's predictions
 - Visualizing the inner layers of the model's network to understand what features the model focuses on. 
 
-For code reference, visit either the jupyter notebook or the HTML version of the jupyter notebook.
+For code reference, visit either the jupyter notebook or the HTML version of the jupyter notebook:
 
 - Jupyter Notebook with code is available at the Github link: [Traffic_Sign_Classifier_with_LeNet.ipynb](Traffic_Sign_Classifier_with_LeNet.ipynb)
 
@@ -66,7 +66,7 @@ Similary, I visualized the distribution of traffic sign types in the training, v
 
 **Figure 4: Distribution of Traffic Sign Types in Testing Set** 
 
-From looking at **Figure 2** the distribution bar graph for traffic sign types in the training set, **keep right**, **yield**, **priority road**, **speed limit (50km/h)** and **speed limit (30km/h)** have highest occurrences. Therefore, when the model is trained, it probably will do well in classifying those particular traffic sign types. Since the validation set has a similar distribution for traffic sign types as the training set, the model will most likely achieve a high validation accuracy. Likewise, the testing set also has this similar distribution for traffic sign types as the training set, so the model's predictions will probably be high testing accuracy too. However, if I later download German Traffic Signs from the internet that the model did not learn well and have the model classify them, the model's predictions for these new web images will most likely be low accuracy.
+From looking at **Figure 2**, the distribution bar graph for traffic sign types in the training set, **keep right**, **yield**, **priority road**, **speed limit (50km/h)** and **speed limit (30km/h)** have highest occurrences. Therefore, when the model is trained, it probably will do well in classifying those particular traffic sign types. Since the validation set has a similar distribution for traffic sign types as the training set, the model will most likely achieve a high validation accuracy. Likewise, the testing set also has this similar distribution for traffic sign types as the training set, so the model's predictions will probably be high testing accuracy too. However, if I later download German Traffic Signs from the internet that the model did not learn well and have the model classify them, the model's predictions for these new web images will most likely be low accuracy.
 
 ## Design and Test a Model Architecture
 
@@ -106,7 +106,7 @@ I implemented a 5 layer CNN model based on [Yann LeCun's LeNet model architectur
 
 ![lenet_mod](assets/data/images/lenet_mod.jpg)
 
-**Figure 6: Original LeNet-5 Architecture**
+**Figure 6: Modified LeNet-5 Architecture**
 
 The breakdown of our modified lenet-5 architecture will be discussed below:
 
@@ -144,7 +144,7 @@ First I setup Tensorflow hyperparameters and variables used for training the mod
 
 The **learning rate equals 0.001** since it is a good default value. The learning rate tells Tensorflow how quickly to update the weights. The **epochs equals 10** to tell Tensorflow to run the training data through the network 10 times. The epochs was set to 10, so training would not take too long and because the model's validation accuracy was near 100%. The **batch size equals 64** to tell Tensorflow to run 64 training images at a time. I decided to go with a smaller batch size to consider processors with memory limitations. The downside of using 64 batches is that the model training will take longer, but that should not be a problem since the epochs equals 10.
 
-The Tensorflow variables are set up. **x** is a placeholder that stores the input batches. The batch size for x is initialized to None to allow the placeholder to later accept a batch of any size. The image dimensions for x were set to 32 by 32 by 3. **y** is a placeholder that stores the labels as integers, meaning they are not one hot encoded. The **tf.one_hot(y, 43)** function is used to one hot encode the labels and that result is stored into **one_hot_y**.
+Now I need to setup the Tensorflow variables. **x** is a placeholder that stores the input batches. The batch size for x is initialized to None to allow the placeholder to later accept a batch of any size. The image dimensions for x were set to 32 by 32 by 3. **y** is a placeholder that stores the labels as integers, meaning they are not one hot encoded. The **tf.one_hot(y, 43)** function is used to one hot encode the labels and that result is stored into **one_hot_y**.
 
 Now with the Tensorflow hyperparameters and variables setup, I can activate the training pipeline by passing training images to it. The pipeline then trains the model. Let's dive into the pipeline to see how it trains the model. As data is pushed into the pipeline, that data is loaded into the **LeNet()** function to calculate the logits. Those logits are then compared with the ground truth labels and the cross entropy is calculated using the **tf.nn.softmax_cross_entropy_with_logits()** function. The average cross entropy from all the training images is computed using the **tf.reduce_mean()** function. Next the Adam optimizer with the learning rate minimizes the loss function using the **tf.train.AdamOptimizer()** function. Stochastic gradient descent is similar to the Adam optimizer, but we used Adam because it is more sophisticated. Finally the pipeline runs the **minimize()** function on the optimizer, which uses backpropagation to update the network and minimize the model's training loss.
 
@@ -162,9 +162,9 @@ With the **evaluate()** function implemented to run the evaluation pipeline, let
 
 ### Solution Approach
 
-My final model results for traffic sign recognition were **Validation Accuracy = 97.3%** and **Test Accuracy = 96.4%**. When starting the project, I chose the LeNet architecture developed by Yan Lecun in 1998. This network architecture was already well known for it's great performance on image recognition, specifically on classifying hand written numbers from the MNIST dataset. Since hand written digit recognition and traffic sign recognition are similar, both use cases detect patterns in images and match them with labeled training data, this model with some modifications would work well for my project.
+My final model results for traffic sign recognition were **Validation Accuracy = 98.4%** and **Test Accuracy = 96.5%**. When starting the project, I chose the LeNet architecture developed by Yan Lecun in 1998. This network architecture was already well known for it's great performance on image recognition, specifically on classifying hand written numbers from the MNIST dataset. Since hand written digit recognition and traffic sign recognition are similar, both use cases detect patterns in images and match them with labeled training data, this model with some modifications would work well for my project.
 
-When I trained and evaluated the model for the first time, the result was 89.5% validation accuracy. To meet the requirements for the project, the validation accuracy needed to be 93% or higher. I tried tuning the hyperparameters for the model and found changing the batch size to 64 increased validation accuracy. I also found that adding the dropout regularization layers at the end of the first two fully connected layers increased the validation accuracy to 95.1%. Once I started augmenting the training data with 6 rotations from -15 to +15 degrees followed by normalizing the data, then I noticed the validation accuracy increase to 97.3%.
+When I trained and evaluated the model for the first time, the result was 89.5% validation accuracy. To meet the requirements for the project, the validation accuracy needed to be 93% or higher. I tried tuning the hyperparameters for the model and found changing the batch size to 64 increased validation accuracy. I also found that adding the dropout regularization layers at the end of the first two fully connected layers increased the validation accuracy to 95.1%. Once I started augmenting the training data with 6 rotations from -15 to +15 degrees followed by normalizing the data, then I noticed the validation accuracy increase to 98.4%.
 
 ## Test a Model on New Images
 
@@ -174,17 +174,19 @@ I downloaded 5 German Traffic Signs of varying sizes from the internet. I did no
 
 ![web_test_images.jpg](assets/data/images/output/web_test_images.jpg)
 
+**Figure 7: New Images**
+
 I preprocessed the images by resizing them to 32 by 32, so they would be the dimensions the model expects. As one looks at the following image, the features look distorted compared to the original image due to resizing, which may cause the model's prediction accuracy to be lower.
 
 ![resized_web_test_images.jpg](assets/data/images/output/resized_web_test_images.jpg)
+
+**Figure 8: Resized New Images**
 
 After resizing the image, I normalized the new images before passing it to the model to be predicted.
 
 ### Performance on New Images
 
-The performance on the new images is compared to the accuracy results of the test set
-
-The model classified 3 out of 5 traffic signs correctly for the new images from the internet. Thus, the model's test accuracy was 60%. When comparing the model's prediction accuracy on the new images to the accuracy results on the testing set, the model performed 36% worse. This performance accuracy makes sense since these 5 new images had different sizes, rotations, noise and lighting conditions than the test images compared to the German Traffic Sign Dataset.
+The model classified 3 out of 5 traffic signs correctly for the new images from the internet. Thus, the model's test accuracy was 60%. When comparing the model's prediction accuracy on the new images to the accuracy results on the testing set, the model performed 36% worse. This performance accuracy makes sense since these 5 new images had different sizes, rotations, noise and lighting conditions compared to the testing images in the German Traffic Sign Dataset.
 
 I used **tf.argmax()** function and passed logits to it to retrieve the predicted traffic sign type numbers. Earlier we mentioned, these traffic sign type numbers can be used in the **signnames.csv** file to look up the traffic sign names.
 
@@ -192,7 +194,7 @@ I used **tf.argmax()** function and passed logits to it to retrieve the predicte
 
 ### Model Certainty - Softmax Probabilities
 
-For the first image, the model was **86.6%** certain that the image was a traffic sign indicating "**End of no passing by vehicles over 3.5 metric tons**," but the traffic sign in the image was actually a "**Speed limit (50km/h)**." All the remaining softmax probabilities for this first image were not correct. For the second image, the model was **53.5%** certain the image contained a traffic sign indicating "**Priority road**," but it was actually a "**Children crossing**" sign. For the third, fourth and fifth image, the model was 100% certain that the image was a "**No entry**," "**Priority road**" and "**Road work**" traffic sign. For the last 3 new images, the model was **100%** certain in it's prediction and it was also correct.
+For the first image, the model was **53.3%** certain that the image was a traffic sign indicating "**Children crossing**," but the traffic sign in the image was actually a "**Speed limit (50km/h)**." All the remaining softmax probabilities for this first image were not correct. For the second image, the model was **100%** certain the image contained a traffic sign indicating "**Traffic signals**," but it was actually a "**Children crossing**" sign. For the third, fourth and fifth image, the model was 100% certain that the image was a "**No entry**," "**Priority road**" and "**Road work**" traffic sign. For the last 3 new images, the model was **100%** certain in it's prediction and it was also correct.
 
 ![top5_softmax_probabilities.jpg](assets/data/images/output/top5_softmax_probabilities.jpg)
 
@@ -210,47 +212,47 @@ This project focused on building a traffic sign recognition application using ex
 
 The following covers examples of visualizing one or more images in a figure using Matplotlib subplots. 
 
-[Creating multiple subplots using plt.subplots](https://matplotlib.org/devdocs/gallery/subplots_axes_and_figures/subplots_demo.html)
+- [Creating multiple subplots using plt.subplots](https://matplotlib.org/devdocs/gallery/subplots_axes_and_figures/subplots_demo.html)
 
-The following linkr covers how to use numpy unique() function. This function was helpful for counting the number of times a traffic sign appears. It also helped me find the index of the first occurrence of a new traffic sign:
+The following link covers how to use numpy unique() function. This function was helpful for counting the number of times a traffic sign appears. It also helped me find the index of the first occurrence of a new traffic sign:
 
-[NumPy Array manipulation: unique() function](https://www.w3resource.com/numpy/manipulation/unique.php)
+- [NumPy Array manipulation: unique() function](https://www.w3resource.com/numpy/manipulation/unique.php)
 
 The following link covers different data augmentation techniques:
 
-[Data Augmentation | How to use Deep Learning when you have Limited Data - Part 2](https://nanonets.com/blog/data-augmentation-how-to-use-deep-learning-when-you-have-limited-data-part-2/)
+- [Data Augmentation | How to use Deep Learning when you have Limited Data - Part 2](https://nanonets.com/blog/data-augmentation-how-to-use-deep-learning-when-you-have-limited-data-part-2/)
 
 The following link covers how to use Keras ImageDataGenerator for data augmentation:
 
-[Keras ImageDataGenerator and Data Augmentation](https://www.pyimagesearch.com/2019/07/08/keras-imagedatagenerator-and-data-augmentation/)
+- [Keras ImageDataGenerator and Data Augmentation](https://www.pyimagesearch.com/2019/07/08/keras-imagedatagenerator-and-data-augmentation/)
 
 The following link covers data augmentation techniques in CNN using Tensorflow:
 
-[Data Augmentation Techniques in CNN using Tensorflow](https://medium.com/ymedialabs-innovation/data-augmentation-techniques-in-cnn-using-tensorflow-371ae43d5be9#c3f1)
+- [Data Augmentation Techniques in CNN using Tensorflow](https://medium.com/ymedialabs-innovation/data-augmentation-techniques-in-cnn-using-tensorflow-371ae43d5be9#c3f1)
 
 The following link covers how to rotate images with OpenCV:
 
-[Rotate images (correctly) with OpenCV and Python](https://www.pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/)
+- [Rotate images (correctly) with OpenCV and Python](https://www.pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/)
 
 The following link covers how to rotate image 90, 180, 270 degrees using OpenCV:
 
-[OpenCV Python 90, 180, 270 - Example](https://www.tutorialkart.com/opencv/python/opencv-python-rotate-image/)
+- [OpenCV Python 90, 180, 270 - Example](https://www.tutorialkart.com/opencv/python/opencv-python-rotate-image/)
 
 The following link covers image translation using OpenCV:
 
-[Image Translation using OpenCV Python](https://www.geeksforgeeks.org/image-translation-using-opencv-python/)
+- [Image Translation using OpenCV Python](https://www.geeksforgeeks.org/image-translation-using-opencv-python/)
 
 The following link covers geometric transformations on images using OpenCV:
 
-[Geometric Transform of Images](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_geometric_transformations/py_geometric_transformations.html)
+- [Geometric Transform of Images](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_geometric_transformations/py_geometric_transformations.html)
 
 The following link covers how to add salt & pepper noise to your images using OpenCV:
 
-[Salt & Pepper Noise and Median Filters, Part II - The Code](https://blog.kyleingraham.com/2017/02/04/salt-pepper-noise-and-median-filters-part-ii-the-code/)
+- [Salt & Pepper Noise and Median Filters, Part II - The Code](https://blog.kyleingraham.com/2017/02/04/salt-pepper-noise-and-median-filters-part-ii-the-code/)
 
 The following link covers how to change the contrast and brightness of an image using OpenCV:
 
-[Changing the contrast and brightness of an image!](https://blog.kyleingraham.com/2017/02/04/salt-pepper-noise-and-median-filters-part-ii-the-code/)
+- [Changing the contrast and brightness of an image!](https://blog.kyleingraham.com/2017/02/04/salt-pepper-noise-and-median-filters-part-ii-the-code/)
 
 ## Traffic Sign Classifier Article References
 
@@ -261,4 +263,3 @@ The following link covers how to change the contrast and brightness of an image 
 - [Term1-P2: Traffic Sign Classifier Project - Part 1](https://medium.com/@gongf05/term1-p2-traffic-sign-classifier-project-f011ed053f8)
 
 - [Traffic signs classification with convolutional network](https://navoshta.com/traffic-signs-classification/)
-- 
