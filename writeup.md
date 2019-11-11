@@ -208,6 +208,13 @@ Deep neural networks are often referred to as a black box. We can understand wha
 
 This project focused on building a traffic sign recognition application using exploratory data analysis (numpy, pandas, matplotlib), computer vision (OpenCV) and deep learning (Tensorflow). During this project, I learned to interpret a deep neural network architecture from a research paper and implement it with Tensorflow. I learned to visualize all sorts data to bring meaningful insight to users and increase the model's prediction accuracy using data preprocessing techniques and tuning the model's hyperparameters. I would highly recommend this project for anyone who wants to gain practical experience with Tensorflow, data analysis and deep learning.
 
+## Udacity Self-Driving Car Engineer ND References:
+
+- Udacity SDCE ND, Lesson 12 - Tensorflow
+- Udacity SDCE ND, Lesson 13 - Deep Neural Networks
+- Udacity SDCE ND, Lesson 14 - Convolutional Neural Networks
+- Udacity SDCE ND, Lesson 15 - LeNet for Traffic Signs
+
 ## How to References
 
 The following covers examples of visualizing one or more images in a figure using Matplotlib subplots. 
